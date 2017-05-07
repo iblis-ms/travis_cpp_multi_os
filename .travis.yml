@@ -13,6 +13,10 @@ matrix:
     - os: osx
       compiler: clang
 
+addons:
+  apt:
+    packages:
+    - cmake-2.8.12
 
 script:
  - ./build.py
