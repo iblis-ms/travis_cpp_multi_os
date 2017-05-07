@@ -23,7 +23,6 @@ addons:
     - cmake
     - cmake-data
 
-script: >
- -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo "This is Linux"; fi; 
-    ./build.py
+script: 
+ -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo "This is Linux"; fi; ./build.py
 
