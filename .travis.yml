@@ -6,8 +6,10 @@ matrix:
   include:
     - os: linux
       compiler: gcc
+      sudo: required
     - os: linux
       compiler: clang
+      sudo: required
     - os: osx
       compiler: gcc
     - os: osx
@@ -16,7 +18,7 @@ matrix:
 addons:
   apt:
     packages:
-    - cmake-2.8.12
+    - cmake
 
 script:
  - ./build.py
