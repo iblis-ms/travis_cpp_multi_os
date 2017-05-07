@@ -21,6 +21,7 @@ addons:
     - george-edison55-precise-backports 
     packages:
     - cmake
+    - cmake-data
 
 script:
  -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo "This is Linux"; fi; ./build.py
