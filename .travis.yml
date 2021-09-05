@@ -1,3 +1,4 @@
+language: c++
 matrix:
   include:
     # works on Precise and Trusty
@@ -20,8 +21,8 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
     - os: osx
-          osx_image: xcode8
-          env:
-            - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
+      osx_image: xcode8
+      env:
+        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
 before_install:
-    - eval "${MATRIX_EVAL}"
+  - eval "${MATRIX_EVAL}"
