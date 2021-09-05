@@ -2,17 +2,18 @@ language: c++
 matrix:
   include:
     - os: linux
-      addons:
+      addons: &clang10
         apt:
           sources:
-            - llvm-toolchain-focal-10.0
+          - sourceline: 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-10 main'
+            key_url: https://apt.llvm.org/llvm-snapshot.gpg.key
           packages:
-            - clang-10.0
+          - clang-10
       env:
         - MATRIX_EVAL="CC=clang-10.0 && CXX=clang++-10.0"
     - os: osx
-      osx_image: xcode8
+      osx_image: xcode10.3
       env:
-        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
+        - MATRIX_EVAL="brew install gcc && CC=gcc && CXX=g++"
 before_install:
   - eval "${MATRIX_EVAL}"
