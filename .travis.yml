@@ -7,6 +7,7 @@ stages:
 jobs:
   include:
     - stage: setup
+      name: "Linux Clang 11"
       os: linux
       dist: focal
       addons: &clang11
@@ -20,8 +21,37 @@ jobs:
             - libc++-11-dev
             - libc++abi-11-dev
             - cmake
+            - git
+            - python3.8
+            - python3-pip
+      script:
+        - clang-11 --version
+        - cmake --version
+        - python3 --version
       env:
         - MATRIX_EVAL="CC=clang-11.0 && CXX=clang++-11.0"
+    - stage: setup
+      name: "Linux GCC-10"
+      os: linux
+      dist: focal
+      addons: &clang11
+        apt:
+          sources:
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+            - g++-10
+            - gcc-100
+            - cmake
+            - git
+            - python3.8
+            - python3-pip
+      script:
+        - gcc-10 --version
+        - g++-10 --version
+        - cmake --version
+        - python3 --version
+      env:
+        - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10"
 
 script: 
   - echo "this script ${MATRIX_EVAL}"
