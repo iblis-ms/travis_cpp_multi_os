@@ -11,10 +11,14 @@ matrix:
       - clang-tools-11
       - clang-11
       env:
-        - MATRIX_EVAL="CC=clang-10.0 && CXX=clang++-10.0"
+        - MATRIX_EVAL="CC=clang-11.0 && CXX=clang++-11.0"
     - os: osx
       osx_image: xcode10.3
       env:
         - MATRIX_EVAL="brew install gcc && CC=gcc && CXX=g++"
+
+script: 
+  - echo "script: ${MATRIX_EVAL}"
+
 before_install:
-  - eval "${MATRIX_EVAL}"
+  - echo "${MATRIX_EVAL}"
