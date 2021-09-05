@@ -12,10 +12,27 @@ matrix:
       - clang-11
       env:
         - MATRIX_EVAL="CC=clang-11.0 && CXX=clang++-11.0"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-11
+      env:
+        - MATRIX_EVAL="CC=gcc-11 && CXX=g++-11"
     - os: osx
-      osx_image: xcode10.3
+      osx_image: xcode12.5
+      env:
+        - MATRIX_EVAL="CLANG"
+    - os: osx
+      osx_image: xcode12.5
       env:
         - MATRIX_EVAL="brew install gcc && CC=gcc && CXX=g++"
+    - os: osx
+      osx_image: xcode12.5
+      env:
+        - MATRIX_EVAL="brew install gcc@10 && CC=gcc-10 && CXX=g++-10"
 
 script: 
   - echo "this script ${MATRIX_EVAL}"
