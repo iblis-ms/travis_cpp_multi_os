@@ -1,28 +1,27 @@
-
-language: c++
-
-
 matrix:
   include:
+    # works on Precise and Trusty
     - os: linux
-      compiler: gcc
-      sudo: required
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - os: linux
-      compiler: clang
-      sudo: required
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - clang-5.0
+      env:
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
     - os: osx
-      compiler: gcc
-    - os: osx
-      compiler: clang
-
-addons:
-  apt:
-    sources:
-    - george-edison55-precise-backports 
-    packages:
-    - cmake
-    - cmake-data
-
-script: 
- -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo "This is Linux"; fi; ./build.py
-
+          osx_image: xcode8
+          env:
+            - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
+before_install:
+    - eval "${MATRIX_EVAL}"
