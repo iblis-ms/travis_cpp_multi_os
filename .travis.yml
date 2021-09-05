@@ -18,7 +18,7 @@ matrix:
         - MATRIX_EVAL="brew install gcc && CC=gcc && CXX=g++"
 
 script: 
-  - echo "script: ${MATRIX_EVAL}"
+  - echo "this script ${MATRIX_EVAL}"
 
 before_install:
   - echo "${MATRIX_EVAL}"
